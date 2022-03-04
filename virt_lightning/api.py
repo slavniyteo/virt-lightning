@@ -341,11 +341,7 @@ def ssh_config(configuration, context="default", **kwargs):
     )
 
     output = ""
-    groups = {}
     for domain in hv.list_domains():
-        for group in domain.groups:
-            groups[group].append(domain)
-
         if domain.context != context:
             continue
 
@@ -358,10 +354,6 @@ def ssh_config(configuration, context="default", **kwargs):
             ssh_key_file=domain.ssh_key,
         )
 
-    for group_name, domains in groups.items():
-        output += "\n[{group_name}]".format(group_name=group_name)
-        for domain in domains:
-            output += domain.name
     return output
 
 
