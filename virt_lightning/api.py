@@ -338,6 +338,10 @@ def ssh_config(configuration, context="default", **kwargs):
         "     Hostname {ipv4}\n"
         "     User {username}\n"
         "     IdentityFile {ssh_key_file}\n"
+        "     StrictHostKeyChecking no\n"
+        "     UserKnownHostsFile /dev/null\n"
+        "     RemoteCommand /bin/bash\n"
+        "     RequestTTY yes\n"
     )
 
     output = ""
@@ -351,7 +355,7 @@ def ssh_config(configuration, context="default", **kwargs):
             name=domain.name,
             username=domain.username,
             ipv4=domain.ipv4.ip,
-            ssh_key_file=domain.ssh_key,
+            ssh_key_file=domain.ssh_key or configuration.ssh_key_file,
         )
 
     return output
