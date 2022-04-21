@@ -351,11 +351,13 @@ def ssh_config(configuration, context="default", **kwargs):
 
         template = ssh_host_template
 
+        ssh_pub_key = re.sub('.pub$', '', domain.ssh_key or configuration.ssh_key_file)
+
         output += template.format(
             name=domain.name,
             username=domain.username,
             ipv4=domain.ipv4.ip,
-            ssh_key_file=domain.ssh_key or configuration.ssh_key_file,
+            ssh_key_file=ssh_pub_key,
         )
 
     return output
