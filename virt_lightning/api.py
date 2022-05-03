@@ -340,7 +340,7 @@ def ssh_config(configuration, context="default", **kwargs):
         "     IdentityFile {ssh_key_file}\n"
         "     StrictHostKeyChecking no\n"
         "     UserKnownHostsFile /dev/null\n"
-        "     RemoteCommand /bin/bash\n"
+        "     RemoteCommand /bin/sudo su -l\n"
         "     RequestTTY yes\n"
     )
 
